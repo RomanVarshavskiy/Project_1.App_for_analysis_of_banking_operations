@@ -1,17 +1,17 @@
+import json
 from datetime import datetime
 
 from dotenv import load_dotenv
-import os
-import json
 
 from config import PATH_DATA_FILE
-from src.utils import (get_current_date_time, greetings, read_excel, df_range_current_month, df_cards_spend,
-                       df_top_transactions, get_currencies_rate, get_stock_prices)
+from src.utils import (df_cards_spend, df_range_current_month, df_top_transactions, get_currencies_rate,
+                       get_current_date_time, get_stock_prices, greetings, read_excel)
 
 load_dotenv()
 
-def get_result_main_page(date: datetime) -> json:
-    """ Функция реализует JSON-ответ для старницы 'Главная' """
+
+def get_result_main_page(date: datetime) -> str:
+    """Функция реализует JSON-ответ для старницы 'Главная'"""
     #  Приветствие
     result["greeting"] = greetings(current_date)
     #  DataFrame: Исходные данные
@@ -25,7 +25,7 @@ def get_result_main_page(date: datetime) -> json:
     result["cards"] = spends_by_cards.to_dict(orient="records")
 
     #  DataFrame: Топ 5 транзакций за текущий месяц
-    top_5_transactions = df_top_transactions(data_df_range_current_month).head()
+    top_5_transactions = df_top_transactions(data_df_range_current_month)
     result["top_transactions"] = top_5_transactions.to_dict(orient="records")
 
     with open(PATH_DATA_FILE / "user_settings.json", "r") as file:
@@ -42,12 +42,15 @@ def get_result_main_page(date: datetime) -> json:
         result.setdefault("stock_prices", []).append(stock_price)
 
     #  Вывод на консоль в json формате
-    json_result = json.dumps(result, ensure_ascii=False, indent=4)
+    try:
+        json_result = json.dumps(result, ensure_ascii=False, indent=4)
+    except Exception as error:
+        print(f"Произошла ошибка: {error}")
 
     return json_result
 
 
 if __name__ == "__main__":
-    result = {}
+    result: dict = {}
     current_date = get_current_date_time()
     print(get_result_main_page(current_date))
