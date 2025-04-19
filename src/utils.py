@@ -22,7 +22,7 @@ logger = logging.getLogger()
 
 
 def get_current_date_time() -> datetime:
-    """Функция возвращает приветствие в зависимости от текущего времени"""
+    """Функция возвращает текущую дату и время"""
     current_date_time = datetime.now()
     logger.debug(f"Получено текущее время: {current_date_time}")
     return current_date_time
@@ -58,6 +58,7 @@ def read_excel(filename: str, datetime_to_timestamp: bool = True) -> pd.DataFram
         operations_df["Дата операции"] = pd.to_datetime(operations_df["Дата операции"], dayfirst=True, errors="coerce")
     logger.debug(f"Успешно прочитан файл: {filename}, размер данных DataFrame: {operations_df.shape}")
     return operations_df
+    # return operations_df.to_dict("records")  # Преобразуем в список словарей
 
 
 def df_range_current_month(transactions: pd.DataFrame, date: datetime) -> pd.DataFrame:
@@ -172,3 +173,10 @@ def get_stock_prices(stock_simbol: str) -> dict:
     }
     logger.debug(f"Успешно получен ответ от {url}")
     return result
+
+
+
+if __name__ == "__main__":
+    # result: dict = {}
+    # current_date = get_current_date_time()
+    print(read_excel("operations.xlsx").to_dict(orient="records")[0])
