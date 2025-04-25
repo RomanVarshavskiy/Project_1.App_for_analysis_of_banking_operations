@@ -50,7 +50,7 @@ def get_result_main_page(date: datetime) -> str:
     return json_result
 
 
-if __name__ == "__main__":
-    result: dict = {}
-    current_date = get_current_date_time()
-    print(get_result_main_page(current_date))
+# if __name__ == "__main__":
+#     result: dict = {}
+#     current_date = get_current_date_time()
+#     print(get_result_main_page(current_date))

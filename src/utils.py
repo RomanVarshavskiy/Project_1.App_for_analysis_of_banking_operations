@@ -5,20 +5,12 @@ from datetime import datetime
 import pandas as pd
 import requests
 from dotenv import load_dotenv
-
-from config import PATH_DATA_FILE, PATH_TO_LOGGER
+from src.logger import get_logger
+from config import PATH_DATA_FILE
 
 load_dotenv()
 
-logging.basicConfig(
-    filename=PATH_TO_LOGGER / "utils.log",
-    filemode="w",
-    format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-    level=logging.DEBUG,
-    encoding="utf-8",
-)
-
-logger = logging.getLogger()
+logger = get_logger("utils")
 
 
 def get_current_date_time() -> datetime:
