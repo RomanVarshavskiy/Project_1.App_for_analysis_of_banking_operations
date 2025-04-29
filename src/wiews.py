@@ -4,8 +4,16 @@ from datetime import datetime
 from dotenv import load_dotenv
 
 from config import PATH_DATA_FILE
-from src.utils import (df_cards_spend, df_range_current_month, df_top_transactions, get_currencies_rate,
-                       get_current_date_time, get_stock_prices, greetings, read_excel)
+from src.utils import (
+    df_cards_spend,
+    df_range_current_month,
+    df_top_transactions,
+    get_currencies_rate,
+    get_current_date_time,
+    get_stock_prices,
+    greetings,
+    read_excel,
+)
 
 load_dotenv()
 
@@ -50,7 +58,7 @@ def get_result_main_page(date: datetime) -> str:
     return json_result
 
 
-# if __name__ == "__main__":
-#     result: dict = {}
-#     current_date = get_current_date_time()
-#     print(get_result_main_page(current_date))
+if __name__ == "__main__":
+    result: dict = {}
+    current_date = get_current_date_time()
+    print(get_result_main_page(current_date))

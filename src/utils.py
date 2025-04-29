@@ -1,12 +1,12 @@
-import logging
 import os
 from datetime import datetime
 
 import pandas as pd
 import requests
 from dotenv import load_dotenv
-from src.logger import get_logger
+
 from config import PATH_DATA_FILE
+from src.logger import get_logger
 
 load_dotenv()
 
@@ -167,8 +167,10 @@ def get_stock_prices(stock_simbol: str) -> dict:
     return result
 
 
-
-if __name__ == "__main__":
-    # result: dict = {}
-    # current_date = get_current_date_time()
-    print(read_excel("operations.xlsx").to_dict(orient="records")[0])
+# if __name__ == "__main__":
+#     result: dict = {}
+#     current_date = get_current_date_time()
+#     greeting = greetings(current_date)
+#     data_excel = read_excel("operations.xlsx")
+#     df_range_current_month_result = df_range_current_month(data_excel, current_date)
+#     print(df_range_current_month_result.to_dict(orient="records"))

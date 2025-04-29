@@ -3,7 +3,7 @@ import logging
 from config import PATH_TO_LOGGER
 
 
-def get_logger(module_name):
+def get_logger(module_name: str) -> logging.Logger:
     # Создаём объект логгера
     logger = logging.getLogger(module_name)
     # Создаём обработчик для записи логов в файл
@@ -17,5 +17,3 @@ def get_logger(module_name):
     # Устанавливаем уровень логирования
     logger.setLevel(logging.DEBUG)
     return logger
-
-
