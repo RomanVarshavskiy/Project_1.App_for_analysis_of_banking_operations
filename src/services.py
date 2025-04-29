@@ -1,24 +1,21 @@
+import calendar
 import datetime
 import json
 
 from pandas import DataFrame
 
 from src.logger import get_logger
+from src.utils import read_excel
 
 logger = get_logger("services")
 
 
-# _, last_day = calendar.monthrange(int(year), int(month))
 def profitable_cashback(data: DataFrame, year: int, month: int) -> str:
     """Функция выдает JSON с анализом, сколько на каждой категории можно заработать кешбэка в указанном месяце года"""
     date_start = datetime.datetime(year, month, day=1)
     logger.info("Определена начальная дата")
-    if month in [1, 3, 5, 7, 8, 10, 12]:
-        date_end = datetime.datetime(year, month, day=31)
-    elif month == 2:
-        date_end = datetime.datetime(year, month, day=28)
-    else:
-        date_end = datetime.datetime(year, month, day=30)
+    last_day = calendar.monthrange(year, month)
+    date_end = datetime.datetime(year, month, day=last_day[-1])
     logger.info("Определена конечная дата")
 
     # Фильтрация данных за определенный месяц и год
@@ -45,6 +42,6 @@ def profitable_cashback(data: DataFrame, year: int, month: int) -> str:
     return json_result
 
 
-# if __name__ == '__main__':
-#     data_df = read_excel("operations.xlsx")
-#     print(profitable_cashback(data_df, 2025, 3))
+if __name__ == "__main__":
+    data_df = read_excel("operations.xlsx")
+    print(profitable_cashback(data_df, 2025, 3))

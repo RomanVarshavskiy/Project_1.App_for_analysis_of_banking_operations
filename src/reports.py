@@ -1,7 +1,7 @@
 import datetime
 import json
 from functools import wraps
-from typing import Optional, Callable, Any
+from typing import Any, Callable, Optional
 
 import pandas as pd
 
@@ -31,7 +31,7 @@ def write_to_file(filename: str = "report.json") -> Callable:
     return decorator
 
 
-@write_to_file()    # В декоратор можно передать имя файла для записи данных
+@write_to_file()  # В декоратор можно передать имя файла для записи данных
 def spending_by_category(transactions: pd.DataFrame, category: str, date: Optional[str] = None) -> str:
     """Функция возвращает траты по заданной категории за последние три месяца (от переданной даты)"""
     if date:

@@ -71,7 +71,7 @@ def test_read_excel(mock_reader: MagicMock) -> None:
     pd.testing.assert_frame_equal(result, mock_df)
 
 
-def test_df_range_current_month(test_df):
+def test_df_range_current_month(test_df: pd.DataFrame) -> None:
     """Тест функции df_range_current_month"""
     # Подготовка тестовых данных
     test_date = datetime(2021, 10, 30, 15, 44)  # 30 октября 2021, 15:44
@@ -89,7 +89,7 @@ def test_df_range_current_month(test_df):
     assert all(result["Статус"] == "OK")
 
 
-def test_df_cards_spend(test_df):
+def test_df_cards_spend(test_df: pd.DataFrame) -> None:
     """Тест функции df_cards_spend"""
     transactions_df = test_df
     # Вызов тестируемой функции
@@ -102,7 +102,7 @@ def test_df_cards_spend(test_df):
     assert result.loc[2, "cashback"] == 2.0
 
 
-def test_df_top_transactions(test_df):
+def test_df_top_transactions(test_df: pd.DataFrame) -> None:
     """Тест функции df_top_transactions"""
     transactions_df = test_df
     # Вызов тестируемой функции
