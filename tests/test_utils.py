@@ -7,16 +7,8 @@ import requests
 from freezegun import freeze_time
 
 from config import PATH_DATA_FILE
-from src.utils import (
-    df_cards_spend,
-    df_range_current_month,
-    df_top_transactions,
-    get_currencies_rate,
-    get_current_date_time,
-    get_stock_prices,
-    greetings,
-    read_excel,
-)
+from src.utils import (df_cards_spend, df_range_current_month, df_top_transactions, get_currencies_rate,
+                       get_current_date_time, get_stock_prices, greetings, read_excel)
 
 
 @freeze_time("2025-04-19 12:36:00")  # замораживаем дату и время для теста
