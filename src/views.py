@@ -9,6 +9,8 @@ from src.utils import (df_cards_spend, df_range_current_month, df_top_transactio
 
 load_dotenv()
 
+result: dict = {}
+current_date = get_current_date_time()
 
 def get_result_main_page(date: datetime) -> str:
     """Функция реализует JSON-ответ для старницы 'Главная'"""
@@ -50,7 +52,5 @@ def get_result_main_page(date: datetime) -> str:
     return json_result
 
 
-if __name__ == "__main__":
-    result: dict = {}
-    current_date = get_current_date_time()
-    print(get_result_main_page(current_date))
+# if __name__ == "__main__":
+#     print(get_result_main_page(current_date))

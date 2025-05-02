@@ -42,6 +42,6 @@ def profitable_cashback(data: DataFrame, year: int, month: int) -> str:
     return json_result
 
 
-if __name__ == "__main__":
-    data_df = read_excel("operations.xlsx")
-    print(profitable_cashback(data_df, 2025, 3))
+# if __name__ == "__main__":
+#     data_df = read_excel("operations.xlsx")
+#     print(profitable_cashback(data_df, 2025, 3))
